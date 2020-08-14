@@ -1,0 +1,29 @@
+{
+    "variables":{
+            "service_account_key_file": "",
+            "subnet_id": "",
+            "folder_id": ""
+    },
+    "builders": [
+        {
+            "type": "yandex",
+            "service_account_key_file": "{{user `service_account_key_file`}}",
+            "folder_id": "{{user `folder_id`}}",
+            "source_image_family": "ubuntu-1604-lts",
+            "image_name": "docker-base-{{timestamp}}",
+            "image_family": "docker-base",
+            "ssh_username": "ubuntu",
+            "platform_id": "standard-v1",
+            "subnet_id": "{{user `subnet_id`}}",
+	    "use_ipv4_nat": true
+        }
+    ],
+   
+    "provisioners": [
+	{
+      	    "type": "ansible",
+      	    "playbook_file": "ansible/playbooks/docker-setup.yml"
+    	}
+    ]
+}
+
