@@ -1,0 +1,21 @@
+---
+- name: Deploy reddit in docker
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install pip3
+      become: true
+      apt: name=python3-pip
+
+    - name: Install docker-py
+      become: true
+      pip: name=docker-py
+
+    - name: Run container
+      become: true
+      docker_container:
+        name: reddit-app
+        image: sdomnicapus/otus-reddit:1.0
+        ports: 
+         - "9292:9292"
