@@ -45,3 +45,30 @@ postgres                      11.5                5f1485c70c9a        10 months 
 ruby                          2.2                 6c8e6f9667b2        2 years ago         715MB
 
 
+# Домашнее задание 16
+Изучена работа с сетью в docker
+Описан docker-compose.yml
+Подключены различные подсети
+        Name                      Command             State           Ports
+------------------------------------------------------------------------------------
+sdomnicapus_comment_1   puma                          Up
+sdomnicapus_post_1      python3 post_app.py           Up
+sdomnicapus_post_db_1   docker-entrypoint.sh mongod   Up      27017/tcp
+sdomnicapus_ui_1        puma                          Up      0.0.0.0:9292->9292/tcp
+sd@ubuntu-devops:~/sdomnicapus_microservices/src$ docker network list
+NETWORK ID          NAME                    DRIVER              SCOPE
+21f5a916e06b        bridge                  bridge              local
+024dd69153b9        host                    host                local
+262303607dfb        none                    null                local
+d09c9cb75a1f        reddit                  bridge              local
+02a6e994d29f        sdomnicapus_back_net    bridge              local
+870a732d9c16        sdomnicapus_front_net   bridge              local
+faff2b368e7d        src_reddit              bridge              local
+#Задание:
+Узнайте как образуется базовое имя проекта. Можно ли его задать? Если можно то как? 
+По-умолчанию имя папки.
+Можно. Указать запуск с ключем -p или задать COMPOSE_PROJECT_NAME в .env
+#Создайте docker-compose.override.yml
+Описан docker-compose.override.yml 
+
+
