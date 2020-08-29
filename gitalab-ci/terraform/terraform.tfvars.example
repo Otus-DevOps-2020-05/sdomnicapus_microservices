@@ -1,0 +1,8 @@
+cloud_id = "a6440db7a6764aceb396"
+folder_id = "b5d5e773224c4a20856c"
+subnet_id = "6246608e49a9480197c6"
+image_id = "2fb18049aa4b432fb32a"
+service_account_key_file = "~/.ssh/key.json"
+public_key_path = "~/.ssh/ubuntu.pub"
+private_key_path = "~/.ssh/ubuntu"
+instance_count = 2
