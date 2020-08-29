@@ -46,6 +46,6 @@
         - '/srv/gitlab/data:/var/opt/gitlab'
     become: true    
   
-  - name: Show info about the env this host belongs to
+  - name: Show info
     debug:
       msg: "external_url http://{{ gitlab_host }}"  

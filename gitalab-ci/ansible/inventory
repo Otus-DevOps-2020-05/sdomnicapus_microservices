@@ -1,5 +1,5 @@
 [docker]
-docker-host ansible_host=84.201.133.158
+docker-host ansible_host=130.193.37.224
 
 [gitlab]
 gitlab-host ansible_host=130.193.37.224

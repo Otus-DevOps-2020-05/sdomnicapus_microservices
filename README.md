@@ -72,3 +72,26 @@ faff2b368e7d        src_reddit              bridge              local
 Описан docker-compose.override.yml 
 
 
+# Домашнее задание 17
+Создан шаблон packer
+Описаны playbooks ansible для установки docker и docker-compose
+Создан шаблон packer playbook для установки docker и docker-compose
+Описаны шаблоны terraform
+
+Изучена работа GitLab
+Создан и добавлен runner для GitLab-CI
+
+Изучена работа с pipeline
+Изучена работа с окружениями
+
+#Задание:
+Автоматизация развёртывания GitLab
+Описан playbook - ansible/gitlab-setup.yml
+
+#Задание:
+Автоматизация развёртывания GitLab Runner
+Описан playbook - ansible/runner-setup.yml
+
+#Задание:
+Настройка оповещений в Slack
+https://devops-team-otus.slack.com/archives/C0166QKTYE4
