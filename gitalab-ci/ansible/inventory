@@ -1,0 +1,6 @@
+[docker]
+docker-host ansible_host=130.193.37.224
+
+[gitlab]
+gitlab-host ansible_host=130.193.37.224
+

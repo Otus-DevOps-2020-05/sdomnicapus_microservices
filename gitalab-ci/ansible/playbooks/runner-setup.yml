@@ -1,0 +1,53 @@
+---
+- name: GitLab Runner install
+  hosts: gitlab-host
+  become: true
+  gather_facts: False
+    
+  tasks:
+    - name: Install python-pip
+      apt:
+        name: python-pip
+        update_cache: true
+      become: true 
+
+    - name: Install python-gitlab
+      pip:
+        name: python-gitlab<1.13
+      become: true    
+
+    - name: Create runner
+      docker_container:
+        name: sdomnicapus_runner
+        image: gitlab/gitlab-runner:latest
+        restart: true
+        volumes:
+          - /srv/gitlab-runner/config:/etc/gitlab-runner
+          - /var/run/docker.sock:/var/run/docker.sock
+    
+    - name: Register runner
+      become: true
+      command: docker exec -it sdomnicapus_runner gitlab-runner register 
+        --url http://{{ gitlab_host }}/
+        --non-interactive 
+        --locked=false 
+        --name sdomnicapus_runner 
+        --executor docker 
+        --docker-image alpine:latest 
+        --registration-token {{ registration_token }} 
+        --tag-list "linux,xenial,ubuntu,docker" 
+        --run-untagged
+
+
+    #- name: Register runner
+    #  gitlab_runner:
+    #    api_url: http://{{ gitlab_host }}/
+    #    api_token: {{ api_token }}
+    #    registration_token: {{ registration_token }}
+    #    description: sdomnicapus_runner
+    #    state: present
+    #    active: True
+    #    tag_list: ['linux,xenial,ubuntu,docker']
+    #    run_untagged: True
+    #    locked: False
+    
