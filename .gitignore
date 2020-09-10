@@ -6,3 +6,4 @@ variables.json
 .terraform/
 backend.tf
 .env
+create-docker-mashine.sh
