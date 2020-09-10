@@ -97,7 +97,7 @@ faff2b368e7d        src_reddit              bridge              local
 https://devops-team-otus.slack.com/archives/C0166QKTYE4
 
 
-# Домашнее задание 17
+# Домашнее задание 18
 Изучена работа Prometheus
 Проработан мониторинг состояния микросервисов
 Добавлены экспортеры для сбора метрик
