@@ -82,5 +82,4 @@ networks:
   front_net:
     ipam:
       config:
-        - subnet: "10.2.1.0/24"
-        
+        - subnet: "10.2.1.0/24"     
