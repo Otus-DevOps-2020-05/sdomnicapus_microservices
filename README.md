@@ -95,3 +95,17 @@ faff2b368e7d        src_reddit              bridge              local
 #Задание:
 Настройка оповещений в Slack
 https://devops-team-otus.slack.com/archives/C0166QKTYE4
+
+
+# Домашнее задание 18
+Изучена работа Prometheus
+Проработан мониторинг состояния микросервисов
+Добавлены экспортеры для сбора метрик
+Изучен ui-интерфейс Prometheus
+Создана сборка Prometheus в Docker-образ
+Собранные образы запушены в Docker-Hub
+https://hub.docker.com/repository/docker/sdomnicapus
+
+#Задание:
+Добавить в Prometheus мониторинг MongoDB
+Добавлен экспортер https://github.com/percona/mongodb_exporter
