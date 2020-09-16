@@ -1,9 +1,9 @@
 global:
-  slack_api_url: 'https://hooks.slack.com/services/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'
-  smtp_from: 'sd@omnicampus.io'
+  slack_api_url: 'https://hooks.slack.com/services/T6HR0TUP3/B01B051RVJ5/**********************'
+  smtp_from: 'sdomnicamus@test.io'
   smtp_smarthost: 'smtp.gmail.com:587'
-  smtp_auth_username: 'sd@omnicampus.io'
-  smtp_auth_identity: 'sd@omnicampus.io'
+  smtp_auth_username: 'sdomnicamus@test.io'
+  smtp_auth_identity: 'sdomnicamus@test.io'
   smtp_auth_password: '******************'
 
 route:
@@ -15,4 +15,4 @@ receivers:
   - channel: '#sergey_dubogrey'
 
   email_configs:
-  - to: 'sd@omnicampus.io'   
+  - to: 'sdomnicamus@test.io'
