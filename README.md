@@ -109,3 +109,34 @@ https://hub.docker.com/repository/docker/sdomnicapus
 #Задание:
 Добавить в Prometheus мониторинг MongoDB
 Добавлен экспортер https://github.com/percona/mongodb_exporter
+
+# Домашнее задание 19
+Добавлен и изучена работа cAdvisor
+Файл docker-compose разделене на 2
+Добавлен и изучена работа Grafana
+Изучен UI Grafana добавлен источник данных 
+Установлен дашборд, описаны метрики для мониторинга приложения
+Изучен процентиль, описаны метрики
+Установлен alertmanager, описано оповещение в slack
+
+#Задание
+Добавьте сбор этих метрик в Prometheus docker
+Изучено https://docs.docker.com/config/daemon/prometheus/
+Добавлено
+Добавлен дашборд "Docker Engine Metrics.json"
+
+#Задание
+Добавить сбор метрик Telegraf от InfluxDB
+Изучено https://blog.nobugware.com/post/2016/telegraf_prometheus_metrics_swiss_army_knife/
+Добавлено ./monitoring/telegraf
+Добавлен дашборд grafana/dashboards/TELEGRAF.json
+
+#Задание
+Реализуйте автоматическое добавление источника данных
+Изучено https://grafana.com/docs/grafana/latest/administration/provisioning/
+Добавлено ./monitoring/grafana/provisioning/...
+
+#Задание
+Реализуйте схему с проксированием запросов от Grafana к Prometheus через Trickster
+Добавлено ./monitoring/trickster
+Добавлен дашборд grafana/dashboards/TRICKSTAR.json
