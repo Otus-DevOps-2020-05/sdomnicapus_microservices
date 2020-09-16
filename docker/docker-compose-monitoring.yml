@@ -53,7 +53,7 @@ services:
 
   grafana:
     #image: grafana/grafana:5.0.0
-    image: ${USER_NAME}/grafana
+    image: ${USERNAME}/grafana
     volumes:
       - grafana_data:/var/lib/grafana
     environment:
@@ -67,7 +67,7 @@ services:
       - back_net
 
   alertmanager:
-    image: ${USER_NAME}/alertmanager
+    image: ${USERNAME}/alertmanager
     command:
       - '--config.file=/etc/alertmanager/config.yml'
     ports:
@@ -76,7 +76,7 @@ services:
       - back_net
 
   telegraf:
-    image: ${USER_NAME}/telegraf
+    image: ${USERNAME}/telegraf
     command:
       - '--config=/etc/telegraf/telegraf.conf'
     volumes:
@@ -87,7 +87,7 @@ services:
       - back_net
 
   trickster:
-    image: ${USER_NAME}/trickster
+    image: ${USERNAME}/trickster
     depends_on:
       - prometheus
       - grafana
