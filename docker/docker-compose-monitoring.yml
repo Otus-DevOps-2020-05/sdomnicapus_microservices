@@ -1,0 +1,107 @@
+version: '3.3'
+services:
+  
+  prometheus:
+    image: ${USERNAME}/prometheus
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=1d'
+    networks:
+      - back_net
+      - front_net
+
+  node-exporter:
+    image: prom/node-exporter:v0.15.2
+    user: root
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+    networks:
+      - back_net
+      - front_net      
+
+  mongodb-exporter:
+    #from https://github.com/percona/mongodb_exporter
+    image: ${USERNAME}/mongodb-exporter
+    environment:
+      - MONGODB_URI=mongodb://post_db:27017
+    networks:
+      - back_net
+
+  cadvisor:
+    image: google/cadvisor:v0.29.0
+    volumes:
+      - '/:/rootfs:ro'
+      - '/var/run:/var/run:rw'
+      - '/sys:/sys:ro'
+      - '/var/lib/docker/:/var/lib/docker:ro'
+    ports:
+      - '8080:8080'
+    networks:
+      - back_net
+      - front_net     
+
+  grafana:
+    #image: grafana/grafana:5.0.0
+    image: ${USERNAME}/grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000 
+    networks:
+      - back_net
+
+  alertmanager:
+    image: ${USERNAME}/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+    ports:
+      - 9093:9093      
+    networks:
+      - back_net
+
+  telegraf:
+    image: ${USERNAME}/telegraf
+    command:
+      - '--config=/etc/telegraf/telegraf.conf'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'  
+    ports:
+      - 9126:9126      
+    networks:
+      - back_net
+
+  trickster:
+    image: ${USERNAME}/trickster
+    depends_on:
+      - prometheus
+      - grafana
+    ports:
+      - 8480:8480   # primary frontend proxy port (insecure)
+      - 8481:8481   # metrics port (insecure)
+    networks:
+      - back_net
+    restart: always
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  back_net:
+  front_net:
