@@ -140,3 +140,13 @@ https://hub.docker.com/repository/docker/sdomnicapus
 Реализуйте схему с проксированием запросов от Grafana к Prometheus через Trickster
 Добавлено ./monitoring/trickster
 Добавлен дашборд grafana/dashboards/TRICKSTAR.json
+
+# Домашнее задание 20
+Пересобраны приложения с тегом logging.
+Создан docker/docker-compose-logging.yml для EFK.
+Создан Dockerfile, конфиг для fluentd, сбилжен и отправлен на dockerhub, а также добавлен в logging файл.
+Добавлена настройка для post и ui для отправки логов в fluentd
+Kibana: созданы index-pattern для индекса из потока fluentd, изучены логи приложения.
+Добавлен фильтр по json, добавлен фильтр с парсером по явной регулярке в fluentd.
+Изучены и добавлены описанные grok шаблоны в конфиг fluentd(распарсены часть полей логов сервиса ui).
+Добавлен в docker-compose-logging zipkin - изучены возможности трассировки запросов.
