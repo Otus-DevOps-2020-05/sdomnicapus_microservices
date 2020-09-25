@@ -150,3 +150,23 @@ Kibana: созданы index-pattern для индекса из потока flu
 Добавлен фильтр по json, добавлен фильтр с парсером по явной регулярке в fluentd.
 Изучены и добавлены описанные grok шаблоны в конфиг fluentd(распарсены часть полей логов сервиса ui).
 Добавлен в docker-compose-logging zipkin - изучены возможности трассировки запросов.
+
+
+# Домашнее задание 21
+
+Пройден "тяжелый (действительно) путь"
+Результат:
+kubectl get pods
+NAME                                  READY   STATUS    RESTARTS   AGE
+busybox                               1/1     Running   0          8m56s
+comment-deployment-69fb955cf8-mznnh   1/1     Running   0          91s
+mongo-deployment-79b8b4c7fc-22l8b     1/1     Running   0          16s
+nginx-554b9c67f9-qcgvv                1/1     Running   0          6m53s
+post-deployment-7b95c9d874-9mm7z      1/1     Running   0          2m18s
+ui-deployment-54bff4588b-m86nl        1/1     Running   0          96s
+
+#Задание
+Описать установку компонентов Kubernetes из THW в виде Ansibleплейбуков
+Описаны: 
+./ansible/kubernetes-controllers.yml
+./ansible/kubernetes-workers.yml
