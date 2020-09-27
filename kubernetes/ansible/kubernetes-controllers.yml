@@ -1,0 +1,111 @@
+- name: Install the Kubernetes
+  hosts: controllers
+  become: true
+
+  tasks:
+
+    - name: Get controller internal IP
+      set_fact:
+        controller_internal_ip: "{{ ansible_default_ipv4.address }}"
+
+    - name: Create directories
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - /etc/kubernetes/config
+        - /var/lib/kubernetes
+
+    - name: Download binaries
+      get_url:
+        url: https://storage.googleapis.com/kubernetes-release/release/v1.15.3/bin/linux/amd64/{{ item }}
+        dest: /usr/local/bin/{{ item }}
+        mode: 0755
+      with_items:
+        - kube-apiserver
+        - kube-controller-manager
+        - kube-scheduler
+        - kubectl
+    
+    - name: Copy certificates, keys
+      copy:
+        src: "{{ item }}"
+        dest: /var/lib/kubernetes/{{ item }}
+      with_items:
+        - ca.pem
+        - ca-key.pem
+        - kubernetes-key.pem
+        - kubernetes.pem
+        - service-account-key.pem
+        - service-account.pem
+        - encryption-config.yaml
+
+    - name: Create the kube-apiserver.service systemd unit file
+      template:
+        src: kube-apiserver.service.j2
+        dest: /etc/systemd/system/kube-apiserver.service
+      notify: Restart kube-apiserver
+
+    - name: Create the kube-controller-manager.service systemd unit file
+      template:
+        src: kube-controller-manager.service.j2
+        dest: /etc/systemd/system/kube-controller-manager.service
+      notify: Restart kube-controller-manager
+
+    - name: Create the kube-scheduler.service systemd unit file
+      template:
+        src: kube-scheduler.service.j2
+        dest: /etc/systemd/system/kube-scheduler.service
+      notify: Restart kube-scheduler
+
+    - name: Install nginx
+      apt:
+        name: nginx
+
+    - name: Copy default avc
+      copy:
+        src: kubernetes.default.svc.cluster.local
+        dest: /etc/nginx/sites-available/kubernetes.default.svc.cluster.local
+      become: true
+    
+    - name: Enable http health checks
+      file:
+        src: /etc/nginx/sites-available/kubernetes.default.svc.cluster.local
+        dest: /etc/nginx/sites-enabled/kubernetes.default.svc.cluster.local
+        state: link
+      notify: Restart nginx
+      become: true
+
+
+  handlers:
+
+  - name: Restart kube-apiserver
+    systemd:
+      state: restarted
+      enabled: yes
+      daemon_reload: yes
+      name: kube-apiserver
+    become: true
+
+  - name: Restart kube-controller-manager
+    systemd:
+      state: restarted
+      enabled: yes
+      daemon_reload: yes
+      name: kube-controller-manager
+    become: true
+
+  - name: Restart kube-scheduler
+    systemd:
+      state: restarted
+      enabled: yes
+      daemon_reload: yes
+      name: kube-scheduler
+    become: true
+
+  - name: Restart nginx
+    service:
+      state: restarted
+      enabled: yes
+      name: nginx
+    become: true

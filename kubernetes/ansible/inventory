@@ -1,0 +1,9 @@
+[controllers]
+master-0 ansible_host=84.201.132.27
+master-1 ansible_host=178.154.226.241
+master-2 ansible_host=178.154.224.227
+
+[workers]
+worker-0 ansible_host=178.154.226.72
+worker-1 ansible_host=178.154.222.32
+worker-2 ansible_host=178.154.224.172
