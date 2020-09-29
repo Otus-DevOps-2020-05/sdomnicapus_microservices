@@ -170,3 +170,12 @@ ui-deployment-54bff4588b-m86nl        1/1     Running   0          96s
 Описаны: 
 ./ansible/kubernetes-controllers.yml
 ./ansible/kubernetes-workers.yml
+
+# Домашнее задание 22
+Установлен KVM (виртуал на вритале)
+Развернул minikube
+Раскатал локальный кластер, развернул dev namespace
+Развернул rediit в кластере kubernetes
+
+Проделана таже работа в YC
+http://130.193.34.117:31551
