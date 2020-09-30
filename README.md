@@ -179,3 +179,15 @@ ui-deployment-54bff4588b-m86nl        1/1     Running   0          96s
 
 Проделана таже работа в YC
 http://130.193.34.117:31551
+
+# Домашнее задание 23
+Изучен kube-dns.
+Настроен Ingress, LoadBalancer.
+К Ingress добавлен TLS.
+Изучен  NetworkPolicy.
+Изучены PersistentVolume, StorageClass, PVC, Dynamic-PVC.
+
+#Задание
+Опишите создаваемый объект Secret в виде Kubernetes-манифеста
+Изучено (https://kubernetes.io/docs/concepts/services-networking/ingress/)
+Создан ingress-secret.yml 
