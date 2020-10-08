@@ -1,0 +1,20 @@
+comment:
+  image:
+    repository: sdomnicapus/comment
+    tag: latest
+  service:
+    externalPort: 9292
+
+post:
+  image:
+    repository: sdomnicapus/post
+    tag: latest
+  service:
+    externalPort: 5000
+
+ui:
+  image:
+    repository: sdomnicapus/ui
+    tag: latest
+  service:
+    externalPort: 9292

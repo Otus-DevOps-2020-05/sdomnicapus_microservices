@@ -7,3 +7,4 @@ variables.json
 backend.tf
 .env
 create-docker-mashine.sh
+Gitlab_ci/
