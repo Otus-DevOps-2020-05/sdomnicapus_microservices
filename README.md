@@ -190,4 +190,11 @@ http://130.193.34.117:31551
 #Задание
 Опишите создаваемый объект Secret в виде Kubernetes-манифеста
 Изучено (https://kubernetes.io/docs/concepts/services-networking/ingress/)
-Создан ingress-secret.yml 
+Создан ingress-secret.yml
+ 
+# Домашнее задание 24
+Изучена работа с Helm2, Helm3, Tiler.
+Изучена работа с templates и зависимостями
+Развернут Gitlab в Kubernetes.
+Изучен pipeline в Kubernetes.
+Описаны pipeline для Helm2+Tiler, Helm2+tiller plugin, Helm3.
