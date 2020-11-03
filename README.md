@@ -198,3 +198,9 @@ http://130.193.34.117:31551
 Развернут Gitlab в Kubernetes.
 Изучен pipeline в Kubernetes.
 Описаны pipeline для Helm2+Tiler, Helm2+tiller plugin, Helm3.
+
+# Домашнее задание 24
+Развернут ingress
+Развернут prometheus/grafana
+Ноастроены templates grafana
+Развернуn EFK
